@@ -4,18 +4,16 @@
 
 template<typename T, int size>
 class TPQueue {
-
-private:
+ private:
     T arr[100];
     int first;
-    int last;
-    
-public:
+    int last; 
+ public:
     TPQueue() :first(0), last(0) { }
     void push(T x) {
         last = last+1;
         int i = last;
-        for (i; arr[i % size].prior < x.prior && i >= first;i--) {
+        for (i; arr[i % size].prior < x.prior && i >= first; i--) {
                 arr[(i+1) % size] = arr[i % size];
         }
         arr[(i+1) % size] = x;
