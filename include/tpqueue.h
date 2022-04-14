@@ -11,15 +11,18 @@ class TPQueue {
  public:
     TPQueue() :first(0), last(0) { }
     void push(T x) {
-        last++;
-        int i = last;
-        for (i; arr[i % size].prior < x.prior && i >= first; i--) {
-                arr[(i+1) % size] = arr[i % size];
+        int i = ++last;
+        for (i; i >= first; i--) {
+            if (arr[(i-1) % size].prior >= x.prior && i > first) {
+                arr[i % size] = arr[(i-1) % size];
+            } else {
+                arr[i % size] = x;
+                break;
+            }
         }
-        arr[(i+1) % size] = x;
     }
     T pop() {
-        return arr[(first++) % size];
+        return arr[(last--) % size];
     }
 };
 
