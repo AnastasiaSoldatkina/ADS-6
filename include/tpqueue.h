@@ -13,16 +13,16 @@ class TPQueue {
     void push(T x) {
         int i = ++last;
         for (i; i >= first; i--) {
-            if (arr[(i-1) % size].prior >= x.prior && i > first) {
-                arr[i % size] = arr[(i-1) % size];
+            if (arr[i-1].prior >= x.prior && i > first) {
+                arr[i] = arr[i-1];
             } else {
-                arr[i % size] = x;
+                arr[i] = x;
                 break;
             }
         }
     }
     T pop() {
-        return arr[(last--) % size];
+        return arr[last--];
     }
 };
 
